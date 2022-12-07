@@ -53,7 +53,7 @@ function parseArgs(argv, env) {
 		params.outputDir = env.OUTPUT_DIR;
 		params.userName = env.USERNAME;
 		params.password = env.PASSWORD;
-		params.deviceId = env.DEVICE_ID;
+		params.deviceId = env.PATIENT_ID;
 		params.dateStart = env.DATE_START;
 		params.dateEnd = env.DATE_END;
 	}
