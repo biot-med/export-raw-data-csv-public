@@ -1,3 +1,6 @@
+### BioT Export Raw Data To CSV
+This script can be used to convert exported data from the [Export Raw Data API](https://docs.biot-med.com/reference/getrawmeasurements) to CSV format
+
 ### Requirements
 - NodeJS 16+
 
