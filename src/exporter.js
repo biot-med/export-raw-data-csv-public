@@ -56,6 +56,7 @@ function parseArgs(argv, env) {
 		params.deviceId = env.PATIENT_ID;
 		params.dateStart = env.DATE_START;
 		params.dateEnd = env.DATE_END;
+		params.attributes = env.ATTRIBUTES;
 	}
 	let errors = [];
 	if (!params.outputDir || !fs.existsSync(params.outputDir)) {
