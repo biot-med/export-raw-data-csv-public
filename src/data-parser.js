@@ -9,7 +9,7 @@ class DataParser {
 	}
 
 	async jsonToCSV(data) {
-		const attributes = data['attributes'];
+		const attributes = data;
 		let transformedAttrs = [];
 		let names = [];
 		for (let i = 0; i < attributes.length; i++){
@@ -26,8 +26,8 @@ class DataParser {
 							sourceEntityId: sources[j].sourceEntityId,
 							sessionId: measurementSessions[k].sessionId
 						}
-					})
-					transformedAttrs.push(...measurements)
+					});
+					transformedAttrs = transformedAttrs.concat(measurements)
 				}
 			}
 		}
@@ -40,7 +40,7 @@ class DataParser {
 				transformedAttrs[k][kk] = _.groupBy(transformedAttrs[k][kk], 'timestamp');
 			}
 		}
-		let csvContent = `sources__sourceEntityId,sources__measurementSessions__sessionId,sources__measurementSessions__measurements__timestamp,${names.sort((a, b)=> a.localeCompare(b)).join(',')}`;
+		let csvContent = `sources__sourceEntityId,sources__measurementSessions__sessionId,sources__measurementSessions__measurements__timestamp,${names.sort((a, b)=> a.localeCompare(b)).join(',')}\r\n`;
 		for (let k of Object.keys(transformedAttrs)) {
 			for (let kk of Object.keys(transformedAttrs[k])) {
 				for (let kkk of Object.keys(transformedAttrs[k][kk])) {

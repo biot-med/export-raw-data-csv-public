@@ -35,4 +35,5 @@ certs/*.pem
 !images/*.md
 
 .env
-./output/*.csv
+./output/**
+./**/result.csv

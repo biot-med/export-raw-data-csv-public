@@ -26,11 +26,17 @@ async function app(argv, env) {
 function getUserInput(params) {
 	const pr = new Promise((resolve, reject)=> {
 		readline.question('Please enter device id (patient id) ', deviceId => {
-			params.deviceId = deviceId
+			if (deviceId) {
+				params.deviceId = deviceId
+			}
 			readline.question('Please enter start date in format MM/DD/YYYY HH:mm ', startDate => {
-				params.dateStart = startDate
+				if (startDate) {
+					params.dateStart = startDate
+				}
 				readline.question('Please enter end date in format MM/DD/YYYY HH:mm ', endDate => {
-					params.dateEnd = endDate
+					if (endDate) {
+						params.dateEnd = endDate
+					}
 					readline.close();
 					resolve();
 				});

@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { exit } = require('process');
 
-const GET_MEASUREMENTS = 'measurement/v1/measurements/raw?flatRequest=';
+const GET_MEASUREMENTS = 'measurement/v1/measurements/raw?attributes=top_leg_pressure&attributes=middle_leg_pressure&attributes=bottom_leg_pressure&';
 const LOGIN = 'ums/v2/users/login';
 
 class DataFetcher {
@@ -17,18 +17,21 @@ class DataFetcher {
 		console.log('Start fetching process');
 		await this.loginBioT();
 		try {
-			const url = this.params.biotBaseUrl + GET_MEASUREMENTS;
+			let url = this.params.biotBaseUrl + GET_MEASUREMENTS;
 			const query = {
 				patientId: deviceId,
 				startTime: new Date(startDate).toISOString(),
 				endTime: new Date(endDate).toISOString()
 			}
-			const { data, status } = await axios.get(url + JSON.stringify(query), { headers: this.headers });
+			url += 'patientId=' + deviceId + '&startTime=' + new Date(startDate).toISOString() + '&endTime=' + new Date(endDate).toISOString()
+			console.log(url);
+			const { data, status } = await axios.get(url, { headers: this.headers });
 			if (status !== 200 && data.data.length > 0) {
 				console.log('Measurements not found');
 				exit(0);
 			}
-
+			console.log(data.attributes);
+			
 			return data.attributes;
 		}
 		catch (e) {
