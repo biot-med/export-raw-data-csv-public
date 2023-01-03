@@ -51,8 +51,8 @@ function parseArgs(argv, env) {
 	if (Object.keys(env).length != 0) {
 		params.biotBaseUrl = env.BIOT_BASE_URL;
 		params.outputDir = env.OUTPUT_DIR;
-		params.userName = env.USERNAME;
-		params.password = env.PASSWORD;
+		params.userName = env.BIOT_USERNAME;
+		params.password = env.BIOT_PASSWORD;
 		params.deviceId = env.PATIENT_ID;
 		params.dateStart = env.DATE_START;
 		params.dateEnd = env.DATE_END;
