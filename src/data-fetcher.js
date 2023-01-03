@@ -48,7 +48,6 @@ class DataFetcher {
 				username: this.params.userName,
   				password: this.params.password
 			}
-			console.log(body);
 			const { data, status } = await axios.post(url, body);
 			if (data && data.accessJwt && data.accessJwt.token) {
 				this.headers = {Authorization: 'Bearer ' + data.accessJwt.token};
